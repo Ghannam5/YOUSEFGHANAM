@@ -482,6 +482,13 @@
             margin-right: auto;
         }
         
+        /* UPDATED: Text animation for About Me */
+        #about-content .char, #about-content .word {
+            transform: translateY(120px);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            display: inline-block; /* Crucial for transforms */
+        }
+        
         /* --- PORTFOLIO & SKILLS CARDS --- */
         .card {
             background-color: var(--secondary-bg);
@@ -578,12 +585,27 @@
         .skill-card p { opacity: 0.9; }
 
         /* --- TESTIMONIALS SECTION --- */
+        /* NEW: Animated Gradient Background */
+        @keyframes animated-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         #testimonials {
-            background: var(--secondary-bg);
             padding: 80px 0;
             position: relative;
             transition: background-color 0.4s ease;
             overflow: hidden;
+            background: linear-gradient(45deg, var(--primary-bg), var(--secondary-bg), var(--primary-bg));
+            background-size: 200% 200%;
+            animation: animated-gradient 15s ease infinite;
+        }
+        
+        body.light-mode #testimonials {
+            background: linear-gradient(45deg, #e0f0ff, #ffffff, #e0f0ff);
+            background-size: 200% 200%;
+            animation: animated-gradient 15s ease infinite;
         }
 
         .testimonial-container {
@@ -670,6 +692,16 @@
         }
 
         /* --- CONTACT SECTION --- */
+        /* NEW: Spotlight effect for contact section */
+        #contact.glass-section {
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(23, 107, 135, 0.95), var(--glass-bg) 40%);
+            transition: background 0.2s ease;
+        }
+        
+        body.light-mode #contact.glass-section {
+             background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.9), var(--glass-bg) 40%);
+        }
+
         #contact.glass-section:hover {
             box-shadow: 0 10px 50px -10px var(--heading-color);
         }
@@ -1102,6 +1134,7 @@
 
             const langSwitcher = document.getElementById('lang-switcher');
             const htmlEl = document.documentElement;
+            let aboutTextInstance = null; // To hold the SplitType instance
 
             const setLanguage = (lang) => {
                 htmlEl.setAttribute('lang', lang);
@@ -1116,6 +1149,9 @@
                 
                 langSwitcher.textContent = lang === 'ar' ? 'English' : 'العربية';
                 localStorage.setItem('language', lang);
+
+                // Re-initialize text animation on language change
+                initAboutTextAnimation();
             };
 
             langSwitcher.addEventListener('click', () => {
@@ -1229,6 +1265,11 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        
+                        if (entry.target.id === 'about') {
+                           animateAboutText();
+                        }
+
                         observer.unobserve(entry.target);
                     }
                 });
@@ -1303,23 +1344,17 @@
 
                     scrollRightBtn.addEventListener('click', () => {
                         const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-                        // Check if we are at the end (with a small tolerance)
                         if (slider.scrollLeft >= maxScrollLeft - 1) {
-                            // If at the end, loop to the beginning
                             slider.scrollTo({ left: 0, behavior: 'smooth' });
                         } else {
-                            // Otherwise, scroll right
                             slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                         }
                     });
 
                     scrollLeftBtn.addEventListener('click', () => {
-                        // Check if we are at the beginning
                         if (slider.scrollLeft === 0) {
-                            // If at the beginning, loop to the end
                             slider.scrollTo({ left: slider.scrollWidth, behavior: 'smooth' });
                         } else {
-                            // Otherwise, scroll left
                             slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
                         }
                     });
@@ -1333,6 +1368,47 @@
                     speed: 400,
                     glare: true,
                     "max-glare": 0.2
+                });
+            }
+
+            // --- UPDATED: ABOUT ME TEXT ANIMATION ---
+            function initAboutTextAnimation() {
+                const aboutText = document.querySelector('#about-content p');
+                if (aboutText) {
+                    if(aboutTextInstance) {
+                        aboutTextInstance.revert();
+                    }
+                    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+                    // If Arabic, split by words to preserve letter connections. Otherwise, split by chars.
+                    const splitType = currentLang === 'ar' ? 'words' : 'chars';
+                    aboutTextInstance = new SplitType(aboutText, { types: splitType });
+                }
+            }
+            
+            function animateAboutText() {
+                const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+                const selector = currentLang === 'ar' ? '#about-content .word' : '#about-content .char';
+                const elements = document.querySelectorAll(selector);
+                elements.forEach((el, i) => {
+                    setTimeout(() => {
+                        el.style.transform = 'translateY(0)';
+                    }, i * (currentLang === 'ar' ? 50 : 5)); // Slower stagger for words
+                });
+            }
+
+            // --- NEW: CONTACT SECTION SPOTLIGHT EFFECT ---
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.addEventListener('mousemove', e => {
+                    const rect = contactSection.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    contactSection.style.setProperty('--x', `${(x / rect.width) * 100}%`);
+                    contactSection.style.setProperty('--y', `${(y / rect.height) * 100}%`);
+                });
+                 contactSection.addEventListener('mouseleave', () => {
+                    contactSection.style.setProperty('--x', `50%`);
+                    contactSection.style.setProperty('--y', `50%`);
                 });
             }
         });
