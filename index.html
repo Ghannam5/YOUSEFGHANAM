@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- META DESCRIPTION FOR SEO -->
+    <meta name="description" content="بورتفوليو يوسف غنام، مصمم جرافيك ومحرر فيديو محترف. متخصص في تصميم الهوية البصرية، مونتاج الفيديو، وإنشاء المحتوى الجذاب.">
+    
+    <title>Youssef Ghannam - Graphic Designer & Video Editor</title>
+    
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <style>
+        /* --- VARIABLES & RESETS --- */
+        :root {
+            /* Default: Dark Mode Colors */
+            --primary-bg: #04364A;
+            --secondary-bg: #176B87;
+            --glass-bg: rgba(23, 107, 135, 0.8);
+            --text-color: #DAFFFB;
+            --heading-color: #64CCC5;
+            --accent-blue: #64CCC5;
+            --accent-blue-dark: #378E89;
+            --accent-light: #DAFFFB;
+            --text-dark-on-accent: #04364A;
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --font-en: 'Inter', sans-serif;
+            --font-ar: 'Cairo', sans-serif;
+        }
+
+        body.light-mode {
+            /* Light Mode Colors */
+            --primary-bg: #F0F8FF; /* Alice Blue */
+            --secondary-bg: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --text-color: #04364A;
+            --heading-color: #176B87;
+            --accent-blue: #176B87;
+            --accent-blue-dark: #04364A;
+            --accent-light: #04364A;
+            --text-dark-on-accent: #FFFFFF;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-ar);
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--primary-bg);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            cursor: none; /* Hide default cursor */
+        }
+        
+        html[lang="en"] body {
+            font-family: var(--font-en);
+        }
+        
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--heading-color);
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--heading-color);
+        }
+        body:hover .cursor-dot, body:hover .cursor-outline {
+            opacity: 1;
+        }
+        .cursor-interact {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+        
+        a, button {
+            cursor: none; /* Apply to all interactive elements */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .glass-section {
+            background-color: var(--glass-bg);
+            border-radius: 24px;
+            margin: 2.5rem auto;
+            box-shadow: 0 8px 30px var(--shadow-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 60px 40px;
+            text-align: center;
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        body.light-mode .glass-section {
+             border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- ANIMATIONS & LOADERS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--heading-color);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: rgba(4, 54, 74, 0.5); /* Adjusted for better glass effect */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: background-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        body.light-mode .navbar {
+            background-color: rgba(240, 248, 255, 0.6); /* Light glass effect */
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: var(--accent-light);
+            font-size: 1.8em;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.4s ease;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.4s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--heading-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--heading-color);
+        }
+        
+        .nav-button {
+            background: transparent;
+            color: var(--accent-light);
+            border: 2px solid var(--accent-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: none;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+            font-size: 1em;
+        }
+        .nav-button:hover {
+            background-color: var(--heading-color);
+            color: var(--text-dark-on-accent);
+            border-color: var(--heading-color);
+            transform: scale(1.05);
+        }
+        
+        #theme-switcher {
+            font-size: 1.2em;
+            padding: 8px 10px;
+        }
+
+        li { list-style: none; }
+        
+        /* --- HERO SECTION --- */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+            background-color: var(--primary-bg);
+            background-image: url('images/11.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+            transition: background-color 0.4s ease;
+        }
+        
+        body.light-mode .hero-section::before {
+             background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--heading-color);
+            background: var(--accent-light);
+            margin-bottom: 20px;
+            box-shadow: 0 0 40px var(--shadow-color);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, border-color 0.4s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 0 60px var(--heading-color);
+        }
+
+        .hero-section h1 {
+            font-size: 4.2em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 8px var(--shadow-color);
+        }
+
+        .hero-section .tagline {
+            font-size: 2em;
+            margin-bottom: 40px;
+            opacity: 0.98;
+            text-shadow: 2px 2px 5px var(--shadow-color);
+        }
+        
+        body.light-mode .hero-section h1,
+        body.light-mode .hero-section .tagline {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- BUTTONS & EFFECTS --- */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            box-shadow: 0 8px 20px var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 80%);
+            transition: left 0.6s ease-in-out;
+            transform: skewX(-25deg);
+        }
+        
+        html[dir="rtl"] .btn::before {
+            right: -100%;
+            left: auto;
+            transform: skewX(25deg);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        html[dir="rtl"] .btn:hover::before {
+            right: 100%;
+            left: auto;
+        }
+
+        .primary-btn {
+            background-color: var(--heading-color);
+            color: var(--text-dark-on-accent);
+            border: 2px solid var(--heading-color);
+            font-size: 1.25em;
+        }
+
+        .primary-btn:hover {
+            background-color: var(--accent-blue-dark);
+            transform: translateY(-7px);
+            box-shadow: 0 12px 25px var(--heading-color);
+        }
+
+        /* --- HEADINGS & SECTIONS --- */
+        h2 {
+            font-size: 3.5em;
+            letter-spacing: 1.5px;
+            margin-bottom: 60px;
+            color: var(--heading-color);
+            text-shadow: 1px 1px 3px var(--shadow-color);
+            position: relative;
+            display: inline-block;
+            transition: color 0.4s ease;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -20px;
+            width: 80px;
+            height: 4px;
+            background-color: var(--heading-color);
+            border-radius: 2px;
+            transition: background-color 0.4s ease;
+        }
+        
+        /* --- ABOUT SECTION ENHANCEMENTS --- */
+        .about-wrapper {
+            position: relative;
+            padding: 40px 0;
+            overflow: hidden;
+        }
+        .floating-shape {
+            position: absolute;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Organic blob shape */
+            background-color: var(--heading-color);
+            opacity: 0.08;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+            transition: background-color 0.4s ease;
+        }
+        .shape1 { width: 200px; height: 200px; top: 0; left: 5%; animation-delay: 0s; }
+        .shape2 { width: 100px; height: 100px; top: 50%; right: 8%; animation-delay: 7s; }
+        .shape3 { width: 60px; height: 60px; bottom: 0; left: 20%; animation-delay: 14s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { transform: translateY(-40px) rotate(180deg); border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { transform: translateY(0px) rotate(360deg); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        #about-content p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* --- PORTFOLIO & SKILLS CARDS --- */
+        .card {
+            background-color: var(--secondary-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d; /* For tilt effect */
+        }
+        .card:hover {
+            box-shadow: 0 15px 40px var(--heading-color);
+        }
+        body.light-mode .card {
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-grid, .skills-grid {
+            display: grid;
+            gap: 40px;
+            padding: 20px 0;
+        }
+        .portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .skills-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 50px; }
+
+        .portfolio-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 5px solid var(--accent-blue-dark);
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item img:hover { transform: scale(1.03); }
+        .portfolio-item h3 {
+            font-size: 1.9em;
+            margin: 25px 0 15px;
+            color: var(--heading-color);
+            min-height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        html[lang="en"] .portfolio-item h3 { font-size: 1.6em; }
+        .portfolio-item p {
+            padding: 0 25px;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+        .portfolio-item .btn {
+            margin: 0 25px 25px;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            border: 2px solid var(--heading-color);
+            color: var(--heading-color);
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .portfolio-item .btn:hover {
+            background-color: var(--heading-color);
+            color: var(--text-dark-on-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--heading-color);
+        }
+        
+        .skill-card {
+            padding: 35px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .skill-card i {
+            font-size: 3em;
+            color: var(--heading-color);
+            margin-bottom: 20px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .skill-card:hover i { transform: scale(1.15) rotate(10deg); }
+        .skill-card h3 {
+            font-size: 1.4em;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+            min-height: 50px;
+        }
+        html[lang="ar"] .skill-card h3 { min-height: 0; }
+        .skill-card p { opacity: 0.9; }
+
+        /* --- TESTIMONIALS SECTION ENHANCEMENTS --- */
+        #testimonials {
+            background: var(--secondary-bg);
+            padding: 80px 0;
+            position: relative;
+            transition: background-color 0.4s ease;
+            overflow: hidden;
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            min-height: 260px;
+            position: relative;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .testimonial-card {
+            flex: 0 0 420px;
+            max-width: 420px;
+            min-width: 320px;
+            background: var(--secondary-bg);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px var(--shadow-color);
+            padding: 0;
+            margin: 0 20px;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            height: 260px;
+            overflow: hidden;
+            transition: box-shadow 0.4s, transform 0.4s;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-card img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: contain;
+            background: #fff;
+            box-shadow: 0 6px 24px var(--shadow-color);
+            transition: transform 0.4s, box-shadow 0.4s;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card:hover img {
+            transform: scale(1.04);
+            box-shadow: 0 18px 48px var(--heading-color);
+        }
+
+        @media (max-width: 992px) {
+            .testimonial-card {
+                flex: 0 0 80vw;
+                max-width: 80vw;
+                min-width: 220px;
+                height: 45vw;
+            }
+        }
+        @media (max-width: 768px) {
+            .testimonial-card {
+                flex: 0 0 95vw;
+                max-width: 95vw;
+                min-width: 180px;
+                height: 55vw;
+            }
+        }
+
+        .testimonial-controls { text-align: center; margin-top: 40px; }
+        .testimonial-controls {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+        .testimonial-controls button {
+            background: var(--heading-color);
+            color: var(--text-dark-on-accent);
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.5em;
+            transition: background 0.3s, transform 0.3s;
+            margin: 0;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .testimonial-controls button:hover {
+            background: var(--accent-blue-dark);
+            transform: scale(1.13);
+        }
+
+        /* --- CONTACT SECTION ENHANCEMENTS --- */
+        #contact.glass-section:hover {
+            box-shadow: 0 10px 50px -10px var(--heading-color);
+        }
+        
+        @keyframes icon-shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            50% { transform: rotate(-15deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .contact-btn:hover i {
+            animation: icon-shake 0.5s ease;
+        }
+        
+        .contact-buttons { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 50px; }
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #FFF;
+            box-shadow: 0 8px 20px var(--shadow-color);
+            min-width: 220px;
+            justify-content: center;
+            font-size: 1.15em;
+        }
+        .contact-btn i { font-size: 2em; }
+        html[dir="rtl"] .contact-btn i { margin-left: 15px; }
+        html[dir="ltr"] .contact-btn i { margin-right: 15px; }
+        .whatsapp { background-color: #25D366; }
+        .whatsapp:hover { background-color: #1DA851; transform: translateY(-7px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5); }
+        .instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .instagram:hover { opacity: 0.9; transform: translateY(-7px); box-shadow: 0 10px 25px rgba(220, 39, 67, 0.5); }
+        .email { background-color: #0077B5; } /* LinkedIn Blue for Email */
+        .email:hover { background-color: #005582; transform: translateY(-7px); box-shadow: 0 10px 25px rgba(0, 119, 181, 0.5); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary-bg);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 1.0em;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+        body.light-mode footer { border-top: 1px solid rgba(0, 0, 0, 0.1); }
+        
+        /* --- MODAL FOR MESSAGES --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+        }
+        .modal-content {
+            background-color: var(--secondary-bg);
+            margin: 15% auto;
+            padding: 30px;
+            border: 1px solid var(--heading-color);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 25px var(--shadow-color);
+        }
+        .modal-content p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .close-button {
+            background-color: var(--heading-color);
+            color: var(--text-dark-on-accent);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .navbar .container { flex-direction: column; gap: 10px; }
+            .hero-section h1 { font-size: 3.5em; }
+            h2 { font-size: 3em; }
+            body { font-size: 1.05em; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .hero-section { height: 80vh; }
+            .hero-section h1 { font-size: 2.8em; }
+            .profile-pic { width: 160px; height: 160px; }
+            h2 { font-size: 2.5em; }
+            .contact-buttons { flex-direction: column; align-items: center; gap: 15px; }
+            .contact-btn { width: 80%; max-width: 350px; }
+            body { font-size: 1.0em; }
+            .cursor-dot, .cursor-outline { display: none; } /* Hide custom cursor on touch devices */
+            a, button { cursor: pointer; } /* Restore default cursor */
+            body { cursor: auto; }
+        }
+        @media (max-width: 480px) {
+            .hero-section h1 { font-size: 2.2em; }
+            h2 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#home" class="navbar-brand" data-lang-key="brand">Youssef Ghannam</a>
+            <ul class="nav-links">
+                <li><a href="#about" data-lang-key="nav_about">من أنا</a></li>
+                <li><a href="#portfolio" data-lang-key="nav_portfolio">أعمالي</a></li>
+                <li><a href="#skills" data-lang-key="nav_skills">المهارات</a></li>
+                <li><a href="#testimonials" data-lang-key="nav_testimonials">آراء العملاء</a></li>
+                <li><a href="#contact" data-lang-key="nav_contact">تواصل معي</a></li>
+                <li><button id="lang-switcher" class="nav-button">English</button></li>
+                <li><button id="theme-switcher" class="nav-button"><i class="fas fa-sun"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header/Hero Section -->
+    <header id="home" class="hero-section">
+        <canvas id="particle-canvas"></canvas>
+        <div class="hero-content">
+            <img src="images/00000.png" alt="Youssef Ghannam Profile" class="profile-pic" onerror="this.onerror=null; this.src='https://placehold.co/200x200/DAFFFB/04364A?text=YG';">
+            <h1 data-lang-key="hero_name">Youssef Ghannam</h1>
+            <p class="tagline" data-lang-key="hero_tagline">Graphic Designer & Video Editor</p>
+            <a href="#about" class="btn primary-btn">
+                <span data-lang-key="hero_button">اكتشف المزيد</span>
+                <i class="fas fa-arrow-down" style="margin-right: 8px;"></i>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Me Section -->
+        <section id="about" class="about-wrapper animated-section">
+            <div class="floating-shape shape1"></div>
+            <div class="floating-shape shape2"></div>
+            <div class="floating-shape shape3"></div>
+            <div class="glass-section">
+                <div class="container">
+                    <h2 data-lang-key="about_title">من أنا (About Me)</h2>
+                    <div id="about-content">
+                        <p data-lang-key="about_p1"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section-padding animated-section">
+            <div class="container">
+                <h2 data-lang-key="portfolio_title">بعض من أعمالي</h2>
+                <div class="portfolio-grid">
+                    <!-- NEW PROJECT: BUNZ -->
+                    <div class="portfolio-item card">
+                        <a href="https://www.behance.net/gallery/227914985/BUNZ-Identity-Campaign-Design-for-a-Burger" target="_blank">
+                            <img src="images/Thumbnail - Size.png" alt="BUNZ Restaurant Brand Identity" onerror="this.onerror=null; this.src='https://placehold.co/600x400/176B87/DAFFFB?text=BUNZ';">
+                        </a>
+                        <h3 data-lang-key="portfolio5_title">BUNZ – تصميم هوية بصرية لمطعم</h3>
+                        <p data-lang-key="portfolio5_p">تم إنشاء هوية بصرية كاملة لـ BUNZ، وهو مطعم برجر عصري. شمل المشروع تصميم الشعار، ولوحة الألوان، والخطوط، والتغليف، مما ساعد على تأسيس حضور قوي ومتماسك للعلامة التجارية.</p>
+                        <a href="https://www.behance.net/gallery/227914985/BUNZ-Identity-Campaign-Design-for-a-Burger" target="_blank" class="btn" data-lang-key="portfolio_button">عرض المشروع</a>
+                    </div>
+                    <!-- Portfolio Item 1 -->
+                    <div class="portfolio-item card">
+                        <a href="https://www.behance.net/gallery/227664051/Mini-Identity-Concept-Pizza-Steve" target="_blank">
+                            <img src="images/Thumbnail.png" alt="Restaurant Brand Redesign" onerror="this.onerror=null; this.src='https://placehold.co/600x400/176B87/DAFFFB?text=Project+1';">
+                        </a>
+                        <h3 data-lang-key="portfolio1_title">إعادة تصميم علامة تجارية لمطعم</h3>
+                        <p data-lang-key="portfolio1_p">قمت بإعادة تصميم الهوية التجارية الكاملة لمطعمين محليين، مما أدى إلى تعزيز وجودهم على الإنترنت وتفاعل العملاء بشكل كبير.</p>
+                        <a href="https://www.behance.net/gallery/227664051/Mini-Identity-Concept-Pizza-Steve" target="_blank" class="btn" data-lang-key="portfolio_button">عرض المشروع</a>
+                    </div>
+                    <!-- Portfolio Item 2 -->
+                    <div class="portfolio-item card">
+                         <img src="images/post.jpg" alt="Educational Content Series" onerror="this.onerror=null; this.src='https://placehold.co/600x400/176B87/DAFFFB?text=Project+2';">
+                        <h3 data-lang-key="portfolio2_title">سلسلة محتوى تعليمي</h3>
+                        <p data-lang-key="portfolio2_p">صممت وأنتجت أكثر من 150 مادة مرئية جذابة للخدمات التعليمية، بما في ذلك العروض التقديمية والرسوم البيانية وتراكبات الفيديو.</p>
+                        <a href="https://www.behance.net/" target="_blank" class="btn" data-lang-key="portfolio_button">عرض المشروع</a>
+                    </div>
+                    <!-- Portfolio Item 3 -->
+                    <div class="portfolio-item card">
+                        <a href="https://www.facebook.com/share/v/1DgySvFobU/" target="_blank">
+                            <img src="images/3.png" alt="Reels Video Editing" onerror="this.onerror=null; this.src='https://placehold.co/600x400/176B87/DAFFFB?text=Project+3';">
+                        </a>
+                        <h3 data-lang-key="portfolio3_title">مونتاج فيديوهات Reels</h3>
+                        <p data-lang-key="portfolio3_p">متخصص في تحرير الفيديو سريع الخطى والجذاب لمقاطع Reels والإعلانات على وسائل التواصل الاجتماعي، مع تحسين المحتوى لتحقيق أقصى قدر من الاحتفاظ.</p>
+                        <a href="https://www.facebook.com/share/v/1DgySvFobU/" target="_blank" class="btn" data-lang-key="portfolio_button">عرض المشروع</a>
+                    </div>
+                    <!-- Portfolio Item 4 -->
+                    <div class="portfolio-item card">
+                        <img src="images/44.png" alt="Thumbnail Design" onerror="this.onerror=null; this.src='https://placehold.co/600x400/176B87/DAFFFB?text=Project+4';">
+                        <h3 data-lang-key="portfolio4_title">تصميم الصور المصغرة</h3>
+                        <p data-lang-key="portfolio4_p">قمت بإنشاء صور مصغرة جذابة ومغرية للنقر لمقاطع فيديو يوتيوب. ركزت على التسلسل الهرمي البصري والصور المقنعة لزيادة معدلات النقر.</p>
+                        <a href="https://www.behance.net/" target="_blank" class="btn" data-lang-key="portfolio_button">عرض المشروع</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="section-padding animated-section">
+            <div class="container">
+                <h2 data-lang-key="skills_title">المهارات</h2>
+                <div class="skills-grid">
+                    <div class="skill-card card">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3 data-lang-key="skill1_title">التصميم الجرافيكي</h3>
+                        <p data-lang-key="skill1_p">إتقان أدوات Adobe مثل فوتوشوب، إليستريتور، وإن ديزاين.</p>
+                    </div>
+                    <div class="skill-card card">
+                        <i class="fas fa-video"></i>
+                        <h3 data-lang-key="skill2_title">تحرير ومونتاج الفيديو</h3>
+                        <p data-lang-key="skill2_p">خبرة في استخدام Adobe Premiere Pro و CapCut لإنتاج فيديوهات احترافية.</p>
+                    </div>
+                    <div class="skill-card card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3 data-lang-key="skill5_title">الإبداع والابتكار</h3>
+                        <p data-lang-key="skill5_p">توليد أفكار جديدة وتقديم حلول تصميم فريدة.</p>
+                    </div>
+                    <div class="skill-card card">
+                        <i class="fas fa-users-cog"></i>
+                        <h3 data-lang-key="skill7_title">التواصل والتعاون</h3>
+                        <p data-lang-key="skill7_p">بناء علاقات قوية مع العملاء والعمل بفعالية ضمن فرق.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="animated-section">
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2 data-lang-key="testimonials_title">آراء العملاء</h2>
+                <div class="testimonial-container" id="testimonial-slider">
+                    <!-- Testimonial Card 1 -->
+                    <div class="testimonial-card">
+                        <img src="images/s (1).png" alt="عميل 1" >
+                    </div>
+                    <!-- Testimonial Card 2 -->
+                    <div class="testimonial-card">
+                        <img src="images/s (2).png" alt="عميل 2" >
+                    </div>
+                    <!-- Testimonial Card 3 -->
+                    <div class="testimonial-card">
+                        <img src="images/s (3).png" alt="عميل 3" >
+                    </div>
+                    <!-- Testimonial Card 4 -->
+                    <div class="testimonial-card">
+                        <img src="images/s (4).png" alt="عميل 4" >
+                    </div>
+                    <!-- Testimonial Card 5 -->
+                    <div class="testimonial-card">
+                        <img src="images/s (5).png" alt="عميل 5" >
+                    </div>
+                    <!-- Testimonial Card 6 -->
+                    <div class="testimonial-card">
+                        <img src="images/s (6).png" alt="عميل 6" >
+                    </div>
+                    <!-- Testimonial Card 7 -->
+                    <div class="testimonial-card">
+                        <img src="images/s (7).png" alt="عميل 7" >
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button id="scroll-left" aria-label="Previous Testimonial">&#8592;</button>
+                    <button id="scroll-right" aria-label="Next Testimonial">&#8594;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="glass-section animated-section">
+            <div class="container">
+                <h2 data-lang-key="contact_title">هل أنت مستعد لتحويل رؤيتك إلى حقيقة؟</h2>
+                <p data-lang-key="contact_p">لنتواصل ونناقش كيف يمكنني مساعدة علامتك التجارية على التألق.</p>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/201062680608" target="_blank" class="contact-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> <span data-lang-key="contact_whatsapp">WhatsApp</span>
+                    </a>
+                    <a href="https://www.instagram.com/yousef_.ghanam/" target="_blank" class="contact-btn instagram">
+                        <i class="fab fa-instagram"></i> <span data-lang-key="contact_instagram">Instagram</span>
+                    </a>
+                    <a href="mailto:yousefghannam61@gmail.com" class="contact-btn email">
+                        <i class="far fa-envelope"></i> <span data-lang-key="contact_email">Email</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-lang-key="footer_text">&copy; 2025 Youssef Ghannam. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- 3D Tilt Effect Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <!-- Text Animation Library -->
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <!-- Main JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- TRANSLATIONS & LANGUAGE SWITCHER ---
+            const translations = {
+                en: {
+                    brand: "Youssef Ghannam",
+                    nav_about: "About",
+                    nav_portfolio: "Portfolio",
+                    nav_skills: "Skills",
+                    nav_testimonials: "Testimonials",
+                    nav_contact: "Contact",
+                    hero_name: "Youssef Ghannam",
+                    hero_tagline: "Graphic Designer & Video Editor",
+                    hero_button: "Discover More",
+                    about_title: "About Me",
+                    about_p1: "Every successful project begins with one simple question: how can we deliver the right idea?<br><br>I'm Yousef Ghannam — a graphic designer and video editor with over 3 years of hands-on experience. Throughout my journey, I’ve collaborated with more than 40 clients across various industries, including education and food & beverage, helping brands communicate visually and connect meaningfully with their audiences.<br><br>My work includes redesigning the visual identity for two restaurant brands, which resulted in a 120% increase in engagement in just one month. I've also created over 150 pieces of visual content — from book covers and YouTube thumbnails to Reels — that have helped educators increase their reach and demand.<br><br>Although I didn’t formally study design, my passion for the field led me to learn through real-world experience, continuous practice, and a deep understanding of what works in today’s market. My focus remains on crafting compelling brand identities, editing engaging videos, and designing visuals that not only look good but serve a purpose.",
+                    portfolio_title: "Some of My Work",
+                    portfolio1_title: "Restaurant Brand Redesign",
+                    portfolio1_p: "Led a complete brand identity overhaul for two local restaurants, significantly boosting their online presence and customer interaction.",
+                    portfolio_button: "View Project",
+                    portfolio2_title: "Educational Content Series",
+                    portfolio2_p: "Designed and produced over 150 engaging visual materials for educational services, including presentations, infographics, and video overlays.",
+                    portfolio3_title: "Reels Video Editing",
+                    portfolio3_p: "Specialized in fast-paced and engaging video editing for social media Reels and advertisements, optimizing content for maximum retention.",
+                    portfolio4_title: "Thumbnail Design",
+                    portfolio4_p: "Created captivating and click-worthy thumbnails for YouTube videos. Focused on visual hierarchy and compelling imagery to increase click-through rates.",
+                    portfolio5_title: "BUNZ – Restaurant Brand Identity Design",
+                    portfolio5_p: "Created a full visual identity for BUNZ, a modern burger restaurant. The project included logo design, color palette, typography, and branded packaging, helping establish a bold and cohesive brand presence.",
+                    skills_title: "Skills",
+                    skill1_title: "Graphic Design",
+                    skill1_p: "Mastering Adobe tools like Photoshop, Illustrator, and InDesign.",
+                    skill2_title: "Video Editing & Production",
+                    skill2_p: "Proficient in Adobe Premiere Pro & CapCut for producing professional videos.",
+                    skill5_title: "Creativity & Innovation",
+                    skill5_p: "Generating fresh and original ideas and delivering unique design solutions.",
+                    skill7_title: "Communication & Collaboration",
+                    skill7_p: "Building strong client relationships and working effectively within teams.",
+                    testimonials_title: "Testimonials",
+                    testimonial1_text: "Working with Youssef was a fantastic experience. He showed high professionalism and unparalleled creativity.",
+                    testimonial1_cite: "Client Name One",
+                    testimonial2_text: "The designs he provided significantly contributed to increasing our audience engagement.",
+                    testimonial2_cite: "Client Name Two",
+                    testimonial3_text: "Fast delivery and high-quality outputs. I highly recommend working with him.",
+                    testimonial3_cite: "Client Name Three",
+                    contact_title: "Ready to Bring Your Vision to Life?",
+                    contact_p: "Let's connect and discuss how I can help your brand shine.",
+                    contact_whatsapp: "WhatsApp",
+                    contact_instagram: "Instagram",
+                    contact_email: "Email",
+                    footer_text: "&copy; 2025 Youssef Ghannam. All rights reserved."
+                },
+                ar: {
+                    brand: "يوسف غنام",
+                    nav_about: "من أنا",
+                    nav_portfolio: "أعمالي",
+                    nav_skills: "المهارات",
+                    nav_testimonials: "آراء العملاء",
+                    nav_contact: "تواصل معي",
+                    hero_name: "يوسف غنام",
+                    hero_tagline: "مصمم جرافيك ومحرر فيديو",
+                    hero_button: "اكتشف المزيد",
+                    about_title: "من أنا",
+                    about_p1: "كل مشروع ناجح يبدأ بسؤال بسيط واحد: كيف نقدّم الفكرة الصحيحة؟<br><br>أنا يوسف غنام — مصمم جرافيك ومحرر فيديو بخبرة عملية تزيد عن 3 سنوات. خلال رحلتي، تعاونت مع أكثر من 40 عميل في مختلف المجالات، بما في ذلك التعليم والأغذية والمشروبات، وساعدت العلامات التجارية على التواصل بصريًا والتواصل بشكل هادف مع جماهيرها.<br><br>يتضمن عملي إعادة تصميم الهوية البصرية لعلامتين تجاريتين لمطاعم، مما أدى إلى زيادة بنسبة 120٪ في التفاعل خلال شهر واحد فقط. كما قمت بإنشاء أكثر من 150 قطعة من المحتوى المرئي — من أغلفة الكتب والصور المصغرة على يوتيوب إلى مقاطع Reels — والتي ساعدت المعلمين على زيادة انتشارهم والطلب على خدماتهم.<br><br>على الرغم من أنني لم أدرس التصميم بشكل رسمي، إلا أن شغفي بالمجال دفعني للتعلم من خلال الخبرة الواقعية، والممارسة المستمرة، والفهم العميق لما ينجح في سوق اليوم. يبقى تركيزي على صياغة هويات تجارية مقنعة، وتحرير فيديوهات جذابة، وتصميم مرئيات لا تبدو جيدة فحسب، بل تخدم هدفاً محدداً.",
+                    portfolio_title: "بعض من أعمالي",
+                    portfolio1_title: "إعادة تصميم علامة تجارية لمطعم",
+                    portfolio1_p: "قمت بإعادة تصميم الهوية التجارية الكاملة لمطعمين محليين، مما أدى إلى تعزيز وجودهم على الإنترنت وتفاعل العملاء بشكل كبير.",
+                    portfolio_button: "عرض المشروع",
+                    portfolio2_title: "سلسلة محتوى تعليمي",
+                    portfolio2_p: "صممت وأنتجت أكثر من 150 مادة مرئية جذابة للخدمات التعليمية، بما في ذلك العروض التقديمية والرسوم البيانية وتراكبات الفيديو.",
+                    portfolio3_title: "مونتاج فيديوهات Reels",
+                    portfolio3_p: "متخصص في تحرير الفيديو سريع الخطى والجذاب لمقاطع Reels والإعلانات على وسائل التواصل الاجتماعي، مع تحسين المحتوى لتحقيق أقصى قدر من الاحتفاظ.",
+                    portfolio4_title: "تصميم الصور المصغرة",
+                    portfolio4_p: "قمت بإنشاء صور مصغرة جذابة ومغرية للنقر لمقاطع فيديو يوتيوب. ركزت على التسلسل الهرمي البصري والصور المقنعة لزيادة معدلات النقر.",
+                    portfolio5_title: "BUNZ – تصميم هوية بصرية لمطعم",
+                    portfolio5_p: "تم إنشاء هوية بصرية كاملة لـ BUNZ، وهو مطعم برجر عصري. شمل المشروع تصميم الشعار، ولوحة الألوان، والخطوط، والتغليف، مما ساعد على تأسيس حضور قوي ومتماسك للعلامة التجارية.",
+                    skills_title: "المهارات",
+                    skill1_title: "التصميم الجرافيكي",
+                    skill1_p: "إتقان أدوات Adobe مثل فوتوشوب، إليستريتور، وإن ديزاين.",
+                    skill2_title: "تحرير ومونتاج الفيديو",
+                    skill2_p: "خبرة في استخدام Adobe Premiere Pro و CapCut لإنتاج فيديوهات احترافية.",
+                    skill5_title: "الإبداع والابتكار",
+                    skill5_p: "توليد أفكار جديدة وتقديم حلول تصميم فريدة.",
+                    skill7_title: "التواصل والتعاون",
+                    skill7_p: "بناء علاقات قوية مع العملاء والعمل بفعالية ضمن فرق.",
+                    testimonials_title: "آراء العملاء",
+                    testimonial1_text: "العمل مع يوسف كان تجربة رائعة، فقد أظهر احترافية عالية وإبداعاً لا مثيل له.",
+                    testimonial1_cite: "اسم العميل الأول",
+                    testimonial2_text: "التصاميم التي قدمها لنا ساهمت بشكل كبير في زيادة تفاعل جمهورنا.",
+                    testimonial2_cite: "اسم العميل الثاني",
+                    testimonial3_text: "سرعة في الإنجاز وجودة في المخرجات، أنصح بالتعامل معه بشدة.",
+                    testimonial3_cite: "اسم العميل الثالث",
+                    contact_title: "هل أنت مستعد لتحويل رؤيتك إلى حقيقة؟",
+                    contact_p: "لنتواصل ونناقش كيف يمكنني مساعدة علامتك التجارية على التألق.",
+                    contact_whatsapp: "واتساب",
+                    contact_instagram: "انستغرام",
+                    contact_email: "البريد الإلكتروني",
+                    footer_text: "© 2025 يوسف غنام. جميع الحقوق محفوظة."
+                }
+            };
+
+            const langSwitcher = document.getElementById('lang-switcher');
+            const htmlEl = document.documentElement;
+
+            const setLanguage = (lang) => {
+                htmlEl.setAttribute('lang', lang);
+                htmlEl.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+                
+                document.querySelectorAll('[data-lang-key]').forEach(element => {
+                    const key = element.getAttribute('data-lang-key');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+                
+                langSwitcher.textContent = lang === 'ar' ? 'English' : 'العربية';
+                localStorage.setItem('language', lang);
+            };
+
+            langSwitcher.addEventListener('click', () => {
+                const currentLang = htmlEl.getAttribute('lang') || 'ar';
+                const newLang = currentLang === 'ar' ? 'en' : 'ar';
+                setLanguage(newLang);
+            });
+            
+            const savedLang = localStorage.getItem('language') || 'ar';
+            setLanguage(savedLang);
+
+            // --- THEME SWITCHER ---
+            const themeSwitcher = document.getElementById('theme-switcher');
+            const body = document.body;
+            const themeIcon = themeSwitcher.querySelector('i');
+
+            const set_theme = (theme) => {
+                localStorage.setItem('theme', theme);
+                body.classList.toggle('light-mode', theme === 'light');
+                themeIcon.classList.toggle('fa-sun', theme === 'dark');
+                themeIcon.classList.toggle('fa-moon', theme === 'light');
+            };
+
+            themeSwitcher.addEventListener('click', () => {
+                const current_theme = localStorage.getItem('theme') || 'dark';
+                const new_theme = current_theme === 'dark' ? 'light' : 'dark';
+                set_theme(new_theme);
+            });
+
+            // Set initial theme on load
+            set_theme(localStorage.getItem('theme') || 'dark');
+
+
+            // --- CUSTOM CURSOR ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+            document.querySelectorAll('a, button, .card').forEach((el) => {
+                el.addEventListener('mouseover', () => cursorOutline.classList.add('cursor-interact'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('cursor-interact'));
+            });
+
+
+            // --- SMOOTH SCROLL & ACTIVE NAV LINK ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const offsetPosition = targetElement.offsetTop - navbarHeight - 20;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Scroll to top when clicking brand name
+            document.querySelector('.navbar-brand').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+
+            const sections = document.querySelectorAll('main section, .about-wrapper');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            window.addEventListener('scroll', () => {
+                let current = 'home'; // Default to home
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionId = section.id || section.querySelector('section')?.id;
+                    if (pageYOffset >= sectionTop - document.querySelector('.navbar').offsetHeight - 50) {
+                        current = sectionId;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref && linkHref.includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // --- SCROLL ANIMATIONS ---
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        
+                        if (entry.target.id === 'about') {
+                            const aboutContent = entry.target.querySelector('#about-content');
+                            if (aboutContent && !aboutContent.classList.contains('split-animated')) {
+                                const paragraphs = aboutContent.querySelectorAll('p');
+                                paragraphs.forEach(p => {
+                                    const split = new SplitType(p, { types: 'words' });
+                                    split.words.forEach((word, i) => {
+                                        word.style.transitionDelay = `${i * 20}ms`;
+                                    });
+                                });
+                                aboutContent.classList.add('split-animated');
+                            }
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const animatedSections = document.querySelectorAll('.animated-section');
+            const observer = new IntersectionObserver(observerCallback, { threshold: 0.2 });
+            animatedSections.forEach(section => observer.observe(section));
+
+
+            // --- PARTICLE BACKGROUND ---
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const numParticles = 80;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+            }
+
+            function Particle(x, y, radius, color, velocity) {
+                this.x = x; this.y = y; this.radius = radius; this.color = color; this.velocity = velocity;
+                this.draw = () => {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                };
+                this.update = () => {
+                    if (this.x + this.radius > canvas.width || this.x - this.radius < 0) this.velocity.x = -this.velocity.x;
+                    if (this.y + this.radius > canvas.height || this.y - this.radius < 0) this.velocity.y = -this.velocity.y;
+                    this.x += this.velocity.x; this.y += this.velocity.y;
+                    this.draw();
+                };
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < numParticles; i++) {
+                    const radius = Math.random() * 2 + 1;
+                    const x = Math.random() * (canvas.width - radius * 2) + radius;
+                    const y = Math.random() * (canvas.height - radius * 2) + radius;
+                    const color = body.classList.contains('light-mode') ? 'rgba(4, 54, 74, 0.4)' : `rgba(100, 204, 197, ${Math.random() * 0.3 + 0.1})`;
+                    const velocity = { x: (Math.random() - 0.5) * 0.5, y: (Math.random() - 0.5) * 0.5 };
+                    particles.push(new Particle(x, y, radius, color, velocity));
+                }
+            }
+
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => particle.update());
+            }
+            
+            resizeCanvas();
+            animateParticles();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // --- TESTIMONIAL SLIDER (INFINITE LOOP + ANIMATION) ---
+            const slider = document.getElementById('testimonial-slider');
+            const scrollLeftBtn = document.getElementById('scroll-left');
+            const scrollRightBtn = document.getElementById('scroll-right');
+
+            function animateCard(card) {
+                card.style.animation = 'none';
+                void card.offsetWidth; // trigger reflow
+                card.style.animation = 'testimonialFadeIn 0.7s cubic-bezier(.4,2,.6,1)';
+            }
+
+            if (slider && scrollLeftBtn && scrollRightBtn) {
+                scrollLeftBtn.addEventListener('click', () => {
+                    const cards = slider.querySelectorAll('.testimonial-card');
+                    if (cards.length > 0) {
+                        slider.insertBefore(cards[cards.length - 1], cards[0]);
+                        animateCard(cards[cards.length - 1]);
+                    }
+                });
+
+                scrollRightBtn.addEventListener('click', () => {
+                    const cards = slider.querySelectorAll('.testimonial-card');
+                    if (cards.length > 0) {
+                        slider.appendChild(cards[0]);
+                        animateCard(cards[0]);
+                    }
+                });
+            }
+            
+            // --- 3D TILT INITIALIZATION ---
+            VanillaTilt.init(document.querySelectorAll(".card"), {
+                max: 15,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2
+            });
+        });
+    </script>
+</body>
+</html>
