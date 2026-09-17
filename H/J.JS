@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "BRAND IDENTITY",
             year: "2025",
             client: "BUNZ Burger Co.",
-            image: "../images/Thumbnail - Size.png",
+            image: "../images/Thumbnail - Size.webp",
             brief: "BUNZ needed an electrifying brand identity that could stand out against saturated competitors in the modern fast-casual burger market. The challenge was crafting an identity that felt energetic, appetizing, and premium all at once.",
             solution: "Engineered a custom typographic logomark with dynamic speed angles, paired with high-voltage yellow, deep crimson, and violet contrasts. Designed complete packaging collateral including burger wrappers, fry containers, bags, and high-impact social media campaign rollouts.",
             tools: ["Adobe Illustrator", "Adobe Photoshop", "Brand Guidelines", "Packaging Print Setup"],
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "CONCEPT & MASCOT",
             year: "2024",
             client: "Pizza Steve Eatery",
-            image: "../images/Thumbnail.png",
+            image: "../images/Thumbnail.webp",
             brief: "Pizza Steve was seeking a memorable character-driven redesign to connect with teenage and college demographics while keeping a warm, friendly neighborhood feel.",
             solution: "Created an iconic pizza slice mascot with retro-modern sunglasses, expressive illustrated line-work, bold 3D typographic styling, and a cohesive warm red color system suited for restaurant signage and social feeds.",
             tools: ["Adobe Illustrator", "Character Design", "Photoshop", "Signage Prep"],
@@ -392,21 +392,21 @@ document.addEventListener('DOMContentLoaded', () => {
             headline: "تصميم هوية بصرية وتغليف كامل لمطعم برجر عصري",
             behanceUrl: "https://www.behance.net/gallery/227914985/BUNZ-Identity-Campaign-Design-for-a-Burger",
             assets: [
-                { src: "../images/Thumbnail - Size.png", title: "الهوية الرئيسية والشعار الرسمي // Master Identity" },
-                { src: "../images/brger (1).png", title: "علبة البرجر الكرتونية الأساسية // Burger Packaging Box" },
-                { src: "../images/brger (2).png", title: "كيس التيك أواي الورقي الفاخر // Takeout Paper Bag" },
-                { src: "../images/brger (3).png", title: "ورق تغليف الساندوتش المنقوش // Custom Wrap Paper" },
-                { src: "../images/brger (4).png", title: "أكواب المشروبات الباردة المطبوعة // Branded Drink Cups" },
-                { src: "../images/brger (5).png", title: "علبة البطاطس المقلية المميزة // French Fries Box" },
-                { src: "../images/brger (6).png", title: "حزمة المطبوعات والتغليف الكاملة // Full Packaging Suite" },
-                { src: "../images/brger (7).png", title: "تطبيق الشعار والتايبوغرافي الديناميكي // Typography & Logomark" },
-                { src: "../images/brger (8).png", title: "دليل الهوية ونظام الألوان الجريء // Brand Visual System" },
-                { src: "../images/brger (9).png", title: "أكياس التوصيل كبيرة الحجم // Large Delivery Bag" },
-                { src: "../images/brger (10).png", title: "تصميم بطاقة قائمة الوجبات // Dine-in Menu Layout" },
-                { src: "../images/brger (11).png", title: "بورد العروض الترويجية الرقمية // Promo Screen Board" },
-                { src: "../images/brger (12).png", title: "ملصقات وستيكرات إغلاق الوجبات // Security Seal Stickers" },
-                { src: "../images/brger (13).png", title: "أزياء ويونيفورم طاقم العمل // Staff Apparel Mockup" },
-                { src: "../images/brger (14).png", title: "لافتة واجهة المطعم الرئيسية // Outdoor Storefront Signage" }
+                { src: "../images/Thumbnail - Size.webp", title: "الهوية الرئيسية والشعار الرسمي // Master Identity" },
+                { src: "../images/brger (1).webp", title: "علبة البرجر الكرتونية الأساسية // Burger Packaging Box" },
+                { src: "../images/brger (2).webp", title: "كيس التيك أواي الورقي الفاخر // Takeout Paper Bag" },
+                { src: "../images/brger (3).webp", title: "ورق تغليف الساندوتش المنقوش // Custom Wrap Paper" },
+                { src: "../images/brger (4).webp", title: "أكواب المشروبات الباردة المطبوعة // Branded Drink Cups" },
+                { src: "../images/brger (5).webp", title: "علبة البطاطس المقلية المميزة // French Fries Box" },
+                { src: "../images/brger (6).webp", title: "حزمة المطبوعات والتغليف الكاملة // Full Packaging Suite" },
+                { src: "../images/brger (7).webp", title: "تطبيق الشعار والتايبوغرافي الديناميكي // Typography & Logomark" },
+                { src: "../images/brger (8).webp", title: "دليل الهوية ونظام الألوان الجريء // Brand Visual System" },
+                { src: "../images/brger (9).webp", title: "أكياس التوصيل كبيرة الحجم // Large Delivery Bag" },
+                { src: "../images/brger (10).webp", title: "تصميم بطاقة قائمة الوجبات // Dine-in Menu Layout" },
+                { src: "../images/brger (11).webp", title: "بورد العروض الترويجية الرقمية // Promo Screen Board" },
+                { src: "../images/brger (12).webp", title: "ملصقات وستيكرات إغلاق الوجبات // Security Seal Stickers" },
+                { src: "../images/brger (13).webp", title: "أزياء ويونيفورم طاقم العمل // Staff Apparel Mockup" },
+                { src: "../images/brger (14).webp", title: "لافتة واجهة المطعم الرئيسية // Outdoor Storefront Signage" }
             ]
         },
         'pizza-steve': {
@@ -416,11 +416,11 @@ document.addEventListener('DOMContentLoaded', () => {
             headline: "تطوير هوية بصرية ممتعة وماسكوت كرتوني لمطعم بيتزا",
             behanceUrl: "https://www.behance.net/gallery/227664051/Mini-Identity-Concept-Pizza-Steve",
             assets: [
-                { src: "../images/Thumbnail.png", title: "شخصية الماسكوت وهوية البراند // Mascot & Brand Concept" },
-                { src: "../images/pizaa (1).png", title: "علبة البيتزا الإيطالية العائلية الكبيرة // Large Pizza Box" },
-                { src: "../images/pizaa (2).png", title: "علبة البيتزا المتوسطة والتوصيل // Medium Delivery Box" },
-                { src: "../images/pizaa (3).png", title: "رسم تفاصيل الماسكوت والخطوط // Illustrated Character Artwork" },
-                { src: "../images/pizaa (4).png", title: "تطبيقات الهوية والمطبوعات الورقية // Stationery & Collateral" }
+                { src: "../images/Thumbnail.webp", title: "شخصية الماسكوت وهوية البراند // Mascot & Brand Concept" },
+                { src: "../images/pizaa (1).webp", title: "علبة البيتزا الإيطالية العائلية الكبيرة // Large Pizza Box" },
+                { src: "../images/pizaa (2).webp", title: "علبة البيتزا المتوسطة والتوصيل // Medium Delivery Box" },
+                { src: "../images/pizaa (3).webp", title: "رسم تفاصيل الماسكوت والخطوط // Illustrated Character Artwork" },
+                { src: "../images/pizaa (4).webp", title: "تطبيقات الهوية والمطبوعات الورقية // Stationery & Collateral" }
             ]
         }
     };
