@@ -1078,8 +1078,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Zoom on any element with data-zoom (design tiles, brand assets, praise snapshots)
     document.querySelectorAll('[data-zoom]').forEach(item => {
         item.addEventListener('click', (e) => {
-            // If the element is a 3D deck card with a video, don't open image lightbox
-            if (item.classList.contains('video-deck-card')) return;
+            // If the element is a 3D deck card or inside a 3D deck stack, do NOT open lightbox!
+            // Let the card click advance the deck naturally!
+            if (item.classList.contains('deck-card-item') || item.closest('.card-deck-stack') || item.classList.contains('video-deck-card')) {
+                return;
+            }
+
             const src = item.getAttribute('data-zoom');
             if (lightboxModal && lightboxImg && src) {
                 e.stopPropagation();
@@ -1090,15 +1094,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    if (closeLightbox && lightboxModal) {
-        closeLightbox.addEventListener('click', () => {
+    if (lightboxModal) {
+        const closeLightboxModal = () => {
             lightboxModal.classList.remove('active');
             document.body.style.overflow = '';
-        });
+            if (lightboxImg) lightboxImg.src = '';
+        };
+
+        if (closeLightbox) {
+            closeLightbox.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeLightboxModal();
+            });
+        }
+
         lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) {
-                lightboxModal.classList.remove('active');
-                document.body.style.overflow = '';
+            if (e.target !== lightboxImg && !e.target.closest('#lightbox-img')) {
+                closeLightboxModal();
             }
         });
     }
